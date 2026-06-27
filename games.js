@@ -30,7 +30,7 @@ const GAMES = [
     {
         title: "10 Minutes Till Dawn",
         file:  "10minutestildawn.html",
-        img:   "10minutestildawn.webp",
+        img:   "https://iogamesweb.com/thumb/10_Minutes_Till_Dawn.webp",
         tags:  ["action"]
     },
     {
