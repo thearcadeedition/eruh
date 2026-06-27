@@ -34,7 +34,7 @@
             <button class="hub-pill" data-section="settings">Settings</button>
         </nav>
         <div class="header-right">
-            <button class="search-toggle" id="search-toggle" aria-label="Search">🔍 Search...</button>
+            <button class="search-toggle" id="search-toggle" aria-label="Search">   🔍 Search...   </button>
         </div>
     </div>
     <div class="search-dropdown" id="search-dropdown" style="display:none">
@@ -59,7 +59,8 @@
                 <p class="hero-sub">Games, anime, movies, music, comics, and AI — all in one tab. Silver made this for you. Don't waste it.</p>
                 <div class="hero-actions">
                     <button class="hero-btn" onclick="showSection('games')">▶ Start Playing</button>
-                    <button class="hero-btn-ghost" onclick="showSection('anime')">⛩️ Watch Anime</button>
+                    <button class="hero-btn" onclick="showSection('movies')">🍿 Watch Movies</button>
+                    <button class="hero-btn" onclick="showSection('anime')">⛩️ Watch Anime</button>
                 </div>
             </div>
             <div class="hero-right" id="hero-previews"></div>
@@ -127,7 +128,7 @@
                 <div class="ent-card" style="--ent-color:var(--accent)" onclick="showSection('ai')">
                     <span class="ent-icon">🤖</span>
                     <div class="ent-name">AI</div>
-                    <div class="ent-hint">Chat with NEXUS</div>
+                    <div class="ent-hint">Chat with CoreLLM</div>
                 </div>
             </div>
         </section>
@@ -136,7 +137,7 @@
 
         <section class="home-section">
             <div class="section-header">
-                <h2 class="section-title">🗂️ Browse by Category</h2>
+                <h2 class="section-title">📁 Browse by Category</h2>
             </div>
             <div class="category-grid" id="category-grid"></div>
         </section>
