@@ -11,6 +11,88 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/app.css">
+    
+    <style>
+        .controls-info-btn {
+            background: none;
+            border: none;
+            color: var(--accent, #ff007f); /* Fallback to hot pink if accent variable isn't loaded */
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 0 10px;
+            vertical-align: middle;
+            transition: transform 0.2s ease;
+        }
+        .controls-info-btn:hover {
+            transform: scale(1.15);
+        }
+        .controls-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        .controls-content {
+            background: #1a1a24;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            color: #fff;
+        }
+        .controls-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        .controls-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .close-modal-btn {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .close-modal-btn:hover {
+            color: #fff;
+        }
+        .controls-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .controls-table th, .controls-table td {
+            padding: 10px;
+            border-bottom: 1px solid #2a2a3a;
+        }
+        .controls-table th {
+            color: #888;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        .key-badge {
+            background: #2a2a3a;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            border: 1px solid #444;
+        }
+    </style>
 
     <script src="assets/disguise.js"></script>
 </head>
@@ -38,7 +120,10 @@
 </header>
 
 <main class="allgames-main">
-    <h1 class="page-heading">All Games</h1>
+    <h1 class="page-heading">
+        All Games 
+        <button class="controls-info-btn" id="open-controls-btn" title="View Game Controls">ⓘ</button>
+    </h1>
 
     <div class="allgames-controls">
         <input id="inline-search" type="search" placeholder="🎮  Search games..." autocomplete="off" spellcheck="false">
@@ -63,6 +148,34 @@
     <p id="no-results" class="no-results" style="display:none">No games found. Try a different search!</p>
     <div class="game-grid" id="game-grid"></div>
 </main>
+
+<div class="controls-modal" id="controls-modal" style="display: none;">
+    <div class="controls-content">
+        <div class="controls-header">
+            <h2>🕹️ Emulator Controls Guide</h2>
+            <button class="close-modal-btn" id="close-controls-btn">&times;</button>
+        </div>
+        <table class="controls-table">
+            <thead>
+                <tr>
+                    <th>Computer Key</th>
+                    <th>Emulator Button</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><span class="key-badge">Z</span> <small>(or X for N64)</small></td><td>A Button</td></tr>
+                <tr><td><span class="key-badge">X</span> <small>(or S for N64)</small></td><td>B Button</td></tr>
+                <tr><td><span class="key-badge">V</span></td><td>Select</td></tr>
+                <tr><td><span class="key-badge">Enter</span></td><td>Start</td></tr>
+                <tr><td><span class="key-badge">Arrow Keys</span></td><td>Direction Pad</td></tr>
+                <tr><td><span class="key-badge">T</span></td><td>Movement Knob UP</td></tr>
+                <tr><td><span class="key-badge">F</span></td><td>Movement Knob LEFT</td></tr>
+                <tr><td><span class="key-badge">G</span></td><td>Movement Knob DOWN</td></tr>
+                <tr><td><span class="key-badge">H</span></td><td>Movement Knob RIGHT</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <footer class="site-footer">
     <p>My Game Vault — <span id="footer-count"></span> games and counting</p>
@@ -121,6 +234,21 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.add('active');
         activeTag = btn.dataset.tag;
         filterGames();
+    });
+
+    // Info Modal Event Listeners
+    const modal = document.getElementById('controls-modal');
+    const openBtn = document.getElementById('open-controls-btn');
+    const closeBtn = document.getElementById('close-controls-btn');
+
+    openBtn.addEventListener('click', () => modal.style.display = 'flex');
+    closeBtn.addEventListener('click', () => modal.style.display = 'none');
+    
+    // Close modal if user clicks outside of the content container
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
     });
 });
 </script>
