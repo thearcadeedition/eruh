@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="favicon-link" rel="icon" type="image/png" href="favicon.png">
+    <title id="page-title">THE ARCADE EDITION</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/app.css">
+    <script src="assets/theme.js"></script>
+    <script src="assets/disguise.js"></script>
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+    <div class="header-inner">
+        <a class="wordmark" href="index.html">
+            <span class="wordmark-icon">✦</span>
+            <span class="wordmark-text">THE <span class="accent">ARCADE</span> EDITION</span>
+        </a>
+        <nav class="site-nav hub-nav" id="hub-nav">
+            <button class="hub-pill active" data-section="home">Home</button>
+            <button class="hub-pill" data-section="games">Games</button>
+            <button class="hub-pill" data-section="anime">Anime</button>
+            <button class="hub-pill" data-section="movies">Movies</button>
+            <button class="hub-pill" data-section="music">Music</button>
+            <button class="hub-pill" data-section="manga">Comics</button>
+            <button class="hub-pill" data-section="apps">Apps</button>
+            <button class="hub-pill" data-section="proxies">Proxies</button>
+            <button class="hub-pill" data-section="ai">AI</button>
+            <button class="hub-pill" data-section="disguise">Disguise</button>
+            <button class="hub-pill" data-section="settings">Settings</button>
+        </nav>
+        <div class="header-right">
+            <button class="search-toggle" id="search-toggle" aria-label="Search">🔍 Search...</button>
+        </div>
+    </div>
+    <div class="search-dropdown" id="search-dropdown" style="display:none">
+        <input id="header-search" type="search" placeholder="Search games..." autocomplete="off" spellcheck="false">
+        <div class="search-results" id="search-results"></div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HOME SECTION
+══════════════════════════════════════════════════════════════════ -->
+<div class="hub-section active" id="section-home">
+    <section class="hero" id="hero">
+        <canvas id="network-canvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-left">
+                <div class="hero-eyebrow">
+                    <span class="hero-eyebrow-dot"></span>
+                    Free · No Ads · No Limits
+                </div>
+                <h1 class="hero-title">Your Internet<br><span class="accent">Playground.</span></h1>
+                <p class="hero-sub">Games, anime, movies, music, comics, and AI — all in one tab. Silver made this for you. Don't waste it.</p>
+                <div class="hero-actions">
+                    <button class="hero-btn" onclick="showSection('games')">▶ Start Playing</button>
+                    <button class="hero-btn-ghost" onclick="showSection('anime')">⛩️ Watch Anime</button>
+                </div>
+            </div>
+            <div class="hero-right" id="hero-previews"></div>
+        </div>
+    </section>
+
+    <main class="home-main">
+        <section class="home-section" id="recent-section">
+            <div class="section-header">
+                <h2 class="section-title">🕹️ Recently Played</h2>
+                <span class="section-badge">Your History</span>
+            </div>
+            <div class="shelf-row" id="recent-row">
+                <p class="empty-note">Nothing yet — go break something! 🎮</p>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section class="home-section">
+            <div class="section-header">
+                <h2 class="section-title">🔥 Popular Games</h2>
+                <button class="section-badge badge-link" onclick="showSection('games')">All Games →</button>
+            </div>
+            <div class="shelf-row" id="popular-row"></div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section class="home-section">
+            <div class="section-header">
+                <h2 class="section-title">🌐 Browse Everything</h2>
+            </div>
+            <div class="ent-grid">
+                <div class="ent-card" style="--ent-color:#e63946" onclick="showSection('anime')">
+                    <span class="ent-icon">⛩️</span>
+                    <div class="ent-name">Anime</div>
+                    <div class="ent-hint">Stream full series with seasons</div>
+                </div>
+                <div class="ent-card" style="--ent-color:#4895ef" onclick="showSection('movies')">
+                    <span class="ent-icon">🎬</span>
+                    <div class="ent-name">Movies</div>
+                    <div class="ent-hint">Blockbusters on demand</div>
+                </div>
+                <div class="ent-card" style="--ent-color:#1DB954" onclick="showSection('music')">
+                    <span class="ent-icon">🎵</span>
+                    <div class="ent-name">Music</div>
+                    <div class="ent-hint">Lofi, gaming & more playlists</div>
+                </div>
+                <div class="ent-card" style="--ent-color:#f97316" onclick="showSection('manga')">
+                    <span class="ent-icon">📚</span>
+                    <div class="ent-name">Comics</div>
+                    <div class="ent-hint">Browse the manga shelf</div>
+                </div>
+                <div class="ent-card" style="--ent-color:#a855f7" onclick="showSection('proxies')">
+                    <span class="ent-icon">🌐</span>
+                    <div class="ent-name">Proxies</div>
+                    <div class="ent-hint">Get past the filters</div>
+                </div>
+                <div class="ent-card" style="--ent-color:#3b82f6" onclick="showSection('apps')">
+                    <span class="ent-icon">📱</span>
+                    <div class="ent-name">Apps</div>
+                    <div class="ent-hint">YouTube, Spotify & more</div>
+                </div>
+                <div class="ent-card" style="--ent-color:var(--accent)" onclick="showSection('ai')">
+                    <span class="ent-icon">🤖</span>
+                    <div class="ent-name">AI</div>
+                    <div class="ent-hint">Chat with NEXUS</div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section class="home-section">
+            <div class="section-header">
+                <h2 class="section-title">🗂️ Browse by Category</h2>
+            </div>
+            <div class="category-grid" id="category-grid"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Coded with 💛 by <strong style="color:var(--accent)">Silver</strong> · THE ARCADE EDITION · <span id="footer-count"></span> games · Zero ads. Zero limits. All yours.</p>
+    </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     GAMES SECTION
+══════════════════════════════════════════════════════════════════ -->
+<div class="hub-section" id="section-games">
+    <main class="allgames-main">
+        <h1 class="page-heading">ALL <span class="accent">GAMES</span></h1>
+        <div class="allgames-controls">
+            <input type="search" id="games-search" placeholder="Search games..." autocomplete="off" spellcheck="false">
+            <button class="search-btn" onclick="filterGames()">Search</button>
+        </div>
+        <div class="tag-filters" id="tag-filters"></div>
+        <div class="game-grid" id="game-grid"></div>
+    </main>
+
+
+    <footer class="site-footer">
+        <p>Coded with 💛 by <strong style="color:var(--accent)">Silver</strong> · THE ARCADE EDITION</p>
+    </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ANIME SECTION
+══════════════════════════════════════════════════════════════════ -->
+<div class="hub-section" id="section-anime">
+    <!-- Library picker -->
+    <div id="anime-library-view" class="anime-library">
+        <div class="manga-library-header">
+            <div class="anime-library-title">✦ Anime Library</div>
+            <div class="anime-library-sub">Pick a series to start watching</div>
+        </div>
+        <div class="anime-series-grid" id="anime-series-grid"></div>
+    </div>
+    <!-- Show view (after picking) -->
+    <div id="anime-show-view" style="display:none">
+        <div class="anime-page" id="anime-app"></div>
+        <div class="ap-season-selector" id="ap-season-selector"></div>
+    </div>
+
+    <div class="ap-overlay" id="ap-overlay">
+        <div class="ap-topbar">
+            <button class="ap-back" onclick="closeAnimePlayer()">
+                <svg viewBox="0 0 24 24" fill="white" width="16"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                Back
+            </button>
+            <div class="ap-nowplaying"><strong id="ap-title">—</strong><span id="ap-ep-label">—</span></div>
+            <div style="width:80px"></div>
+        </div>
+        <iframe class="ap-frame" id="ap-frame" allowfullscreen allow="autoplay; fullscreen"></iframe>
+        <div class="ap-bottom">
+            <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.08em;">Episodes</div>
+            <div class="ep-mini-scroll" id="ep-mini-scroll"></div>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <p>Coded with 💛 by <strong style="color:var(--accent)">Silver</strong> · THE ARCADE EDITION</p>
+    </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MOVIES SECTION
+══════════════════════════════════════════════════════════════════ -->
+<div class="hub-section" id="section-movies">
+    <!-- Library picker -->
+    <div id="movie-library-view" class="movie-library">
+        <div class="manga-library-header">
+            <div class="movie-library-title">🎬 Movie Library</div>
+            <div class="movie-library-sub">Pick something to watch tonight</div>
+        </div>
+        <div class="movie-shelf-grid" id="movie-shelf-grid"></div>
+    </div>
+    <!-- Movie view -->
+    <div id="movie-show-view" style="display:none">
+        <div class="movie-view-bar">
+            <button class="movie-back-to-shelf" onclick="showMovieLibrary()">← Back to Library</button>
+            <span id="movie-show-label" style="font-size:14px;font-weight:600;color:var(--muted)"></span>
+        </div>
+        <div class="movie-page" id="movie-app"></div>
+    </div>
+
+    <div class="movie-overlay" id="movie-overlay">
+        <div id="movieTrigger"></div>
+        <div class="movie-topbar">
+            <button class="movie-back" onclick="closeMoviePlayer()">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="14"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                Return
+            </button>
+            <div class="movie-nowplaying">
+                <span>Now Playing</span>
+                <strong id="movie-p-title">—</strong>
+            </div>
+            <button class="movie-back" onclick="movieToggleFullscreen()" title="Fullscreen (F)">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="14"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+            </button>
+        </div>
+        <iframe class="movie-frame" id="movie-frame" allowfullscreen allow="autoplay; fullscreen"></iframe>
+        <div class="movie-bottom"></div>
+    </div>
+    <footer class="site-footer">
+        <p>Coded with 💛 by <strong style="color:var(--accent)">Silver</strong> · THE ARCADE EDITION</p>
+    </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MUSIC SECTION
+══════════════════════════════════════════════════════════════════ -->
+<div class="hub-section" id="section-music">
+    <div class="music-page">
+        <div class="player-card">
+            <div id="yt-hidden-engine" style="display:none;"></div>
+            <select id="playlistSelect" onchange="switchPlaylist(this.value)">
+                <option value="" disabled selected hidden>Choose a playlist...</option>
+            </select>
+            <input type="text" id="searchBar" placeholder="Search songs or artists..." onkeyup="searchAllTracks()">
+            <div class="artwork-container">
+                <span id="artPlaceholder" class="artwork-placeholder">💿</span>
+                <img id="mainArtwork" src="" alt="Album Art">
+            </div>
+            <div class="track-info">
+                <div id="trackTitle" class="track-title">Pick a playlist to begin</div>
+                <div id="trackArtist" class="track-artist"></div>
+            </div>
+            <div class="timeline-wrapper">
+                <input type="range" id="progressBar" class="music-slider" value="0" max="1000" oninput="seekVideo(this.value)">
+                <div class="progress-container">
+                    <span id="currentTime">0:00</span>
+                    <span id="totalTime">0:00</span>
+                </div>
+            </div>
+            <div class="controls-hud">
+                <button id="playBtnGraphic" class="play-pause-btn" onclick="togglePlayState()">▶</button>
+            </div>
+            <div class="volume-box">
+                <span>🔈</span>
+                <input type="range" id="volumeSlider" class="music-slider" value="100" max="100" oninput="changeVolume(this.value)">
+                <span>🔊</span>
+            </div>
+            <ul id="trackListDeck" class="track-list-deck"></ul>
+            <div class="credits-signature">Made by <span>Silver</span> 💛</div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MANGA / COMICS SECTION
+══════════════════════════════════════════════════════════════════ -->
+<div class="hub-section" id="section-manga">
+    <div class="manga-page">
+        <!-- Series picker -->
+        <div class="manga-library" id="manga-library-view">
+            <div class="manga-library-header">
+                <div class="manga-library-title">📚 Comics & Manga</div>
+                <div class="manga-library-sub">Browse the collection — pick a series to open the shelf</div>
+            </div>
+            <div class="manga-series-grid" id="manga-series-grid"></div>
+        </div>
+        <!-- Shelf view -->
+        <div id="manga-shelf-view" style="display:none;width:100%">
+            <div class="manga-shelf-header">
+                <button class="manga-shelf-back" onclick="showMangaLibrary()">← Back to Library</button>
+                <div class="manga-shelf-series-title" id="manga-shelf-series-title"></div>
+            </div>
+            <div style="display:flex;justify-content:center;width:100%">
+                <div class="manga-shelf-content visible" id="manga-shelf"></div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <p>Coded with 💛 by <strong style="color:var(--accent)">Silver</strong> · THE ARCADE EDITION</p>
+    </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     APPS SECTION
+══════════════════════════════════════════════════════════════════ -->
+<div class="hub-section" id="section-apps">
+    <div class="apps-page">
+        <div class="apps-header">
+            <h1 class="apps-title">📱 Apps</h1>
+            <p class="apps-sub">Open any web app right here — no new tab needed.</p>
+        </div>
+        <div class="apps-grid" id="apps-grid"></div>
+    </div>
+    <!-- App viewer overlay -->
+    <div id="app-overlay" style="display:none;position:fixed;top:60px;left:0;right:0;bottom:0;z-index:400;background:#fff;flex-direction:column;">
+        <div style="display:flex;align-items:center;gap:12px;background:#0f0f13;border-bottom:1px solid rgba(255,255,255,0.07);padding:0 16px;height:44px;flex-shrink:0;">
+            <button onclick="closeAppOverlay()" style="background:none;border:none;color:var(--accent);font-family:Outfit,sans-serif;font-size:13px;font-weight:700;cursor:pointer;padding:6px 0;letter-spacing:0.02em;">← Back to Apps</button>
+            <span style="color:rgba(255,255,255,0.2);">|</span>
+            <span id="app-overlay-title" style="color:#e2e2e6;font-family:Outfit,sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;flex:1;"></span>
+            <button onclick="openAppNewTab()" style="background:none;border:1px solid rgba(255,255,255,0.12);border-radius:6px;color:#7a7a82;font-family:Outfit,sans-serif;font-size:12px;padding:5px 11px;cursor:pointer;">↗ New Tab</button>
+        </div>
+        <iframe id="app-overlay-frame" src="" allowfullscreen style="flex:1;width:100%;border:none;display:block;"></iframe>
+    </div>
+    <footer class="site-footer">
+        <p>Coded with 💛 by <strong style="color:var(--accent)">Silver</strong> · THE ARCADE EDITION</p>
+    </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PROXIES SECTION
+══════════════════════════════════════════════════════════════════ -->
+<div class="hub-section" id="section-proxies">
+    <div class="proxies-page">
+        <h1 class="page-heading">🌐 <span class="accent">Proxies</span></h1>
+        <p style="text-align:center;color:var(--muted);margin-bottom:8px;font-size:14px;">Opens in a new tab — no logs, no nonsense.</p>
+        <div class="proxy-grid" id="proxy-grid"></div>
+    </div>
+    <footer class="site-footer">
+        <p>Coded with 💛 by <strong style="color:var(--accent)">Silver</strong> · THE ARCADE EDITION</p>
+    </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     AI SECTION
+══════════════════════════════════════════════════════════════════ -->
+<div class="hub-section" id="section-ai">
+    <div class="ai-page" id="ai-page">
+        <div class="ai-login-box" id="ai-login-box">
+            <span class="ai-logo-text">NEXUS</span>
+            <div class="ai-status">
+                <span class="ai-status-dot"></span> AI Core: Operational
+            </div>
+            <div class="ai-input-group">
+                <label>Who are you?</label>
+                <input type="text" id="ai-username" placeholder="Enter your name to begin...">
+            </div>
+            <button class="ai-launch-btn" onclick="launchAI()">Initialize Session →</button>
+        </div>
+    </div>
+    <!-- Fullscreen AI frame (outside ai-page so it covers everything) -->
+    <div class="ai-frame-wrap" id="ai-frame-wrap">
+        <div class="ai-frame-topbar">
+            <span class="ai-frame-title">✦ NEXUS AI</span>
+            <button class="ai-frame-close" onclick="closeAI()">← Exit Session</button>
+        </div>
+        <iframe src="https://script.google.com/macros/s/AKfycbxIQWCINwF1Iqd8puG-jquv4sWSAkLTq9Tq86nTnNnoW3Gfvui6fgZIjMGgOss-cZVA/exec" allowfullscreen id="ai-frame"></iframe>
+    </div>
+    <footer class="site-footer">
+        <p>Coded with 💛 by <strong style="color:var(--accent)">Silver</strong> · THE ARCADE EDITION · NEXUS AI</p>
+    </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     DISGUISE SECTION
+══════════════════════════════════════════════════════════════════ -->
+<div class="hub-section" id="section-disguise">
+    <main class="disguise-main">
+        <canvas id="disguise-canvas" class="bg-canvas"></canvas>
+        <div class="disguise-content">
+            <p class="stealth-label">Stealth Mode</p>
+            <h1 class="disguise-title">Tab Disguise</h1>
+            <p class="disguise-sub">Make your browser tab look like something boring. Perfect for when someone walks by.</p>
+            <div class="tab-preview-wrap">
+                <div class="fake-browser">
+                    <div class="fake-header-bar">
+                        <div class="fake-tab" id="fake-tab">
+                            <img src="favicon.png" id="preview-favicon" alt="Favicon" style="width:14px;height:14px;object-fit:contain;" onerror="this.src='favicon.png'">
+                            <span id="preview-title">THE ARCADE EDITION</span>
+                            <span class="fake-close">✕</span>
+                        </div>
+                    </div>
+                    <div class="fake-bar">
+                        <span class="fake-arrows">← → ↻</span>
+                        <span class="fake-url" id="preview-url">yourname.github.io/vault</span>
+                    </div>
+                </div>
+            </div>
+            <p class="disguise-section-label">Presets</p>
+            <div class="preset-grid" id="preset-grid"></div>
+            <p class="disguise-section-label">Custom</p>
+            <div class="custom-row">
+                <input id="custom-title" type="text" placeholder="Enter custom tab title..." class="title-input">
+                <button class="apply-btn" id="apply-btn">Apply</button>
+            </div>
+            <button class="reset-btn" id="reset-btn">↩ Reset to Default</button>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <p>Coded with 💛 by <strong style="color:var(--accent)">Silver</strong> · THE ARCADE EDITION</p>
+    </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SETTINGS SECTION
+══════════════════════════════════════════════════════════════════ -->
+<div class="hub-section" id="section-settings">
+    <div class="settings-page">
+        <h1 class="page-heading">⚙️ <span class="accent">Settings</span></h1>
+        <div class="settings-section">
+            <div class="settings-section-title">Theme</div>
+            <div class="settings-row">
+                <div>
+                    <div class="settings-label">Color Mode</div>
+                    <div class="settings-hint">Changes the overall vibe of the platform</div>
+                </div>
+                <div class="theme-picker" id="theme-picker">
+                    <button class="theme-chip active" data-theme="dark">Dark</button>
+                    <button class="theme-chip" data-theme="midnight">Midnight</button>
+                    <button class="theme-chip" data-theme="gold">Gold</button>
+                    <button class="theme-chip" data-theme="light">Light</button>
+                </div>
+            </div>
+            <div class="settings-row">
+                <div>
+                    <div class="settings-label">Accent Color</div>
+                    <div class="settings-hint">Your signature highlight color</div>
+                </div>
+                <div class="accent-swatches" id="accent-swatches">
+                    <div class="accent-swatch active" data-color="#f4c401" style="background:#f4c401" title="Gold"></div>
+                    <div class="accent-swatch" data-color="#e63946" style="background:#e63946" title="Red"></div>
+                    <div class="accent-swatch" data-color="#1DB954" style="background:#1DB954" title="Green"></div>
+                    <div class="accent-swatch" data-color="#4285F4" style="background:#4285F4" title="Blue"></div>
+                    <div class="accent-swatch" data-color="#a855f7" style="background:#a855f7" title="Purple"></div>
+                    <div class="accent-swatch" data-color="#f97316" style="background:#f97316" title="Orange"></div>
+                    <div class="accent-swatch" data-color="#ffffff" style="background:#ffffff;border:1px solid rgba(255,255,255,0.2)" title="White"></div>
+                </div>
+            </div>
+        </div>
+        <div class="settings-section">
+            <div class="settings-section-title">Accessibility</div>
+            <div class="settings-row">
+                <div>
+                    <div class="settings-label">Font Size</div>
+                    <div class="settings-hint">Base text size across all pages</div>
+                </div>
+                <select class="settings-select" id="font-size-select">
+                    <option value="small">Small</option>
+                    <option value="normal" selected>Normal</option>
+                    <option value="large">Large</option>
+                </select>
+            </div>
+            <div class="settings-row">
+                <div>
+                    <div class="settings-label">Animations</div>
+                    <div class="settings-hint">Network canvas & transition effects</div>
+                </div>
+                <div class="settings-toggle on" id="anim-toggle" onclick="this.classList.toggle('on')"></div>
+            </div>
+        </div>
+        <div class="settings-section">
+            <div class="settings-section-title">Data</div>
+            <div class="settings-row">
+                <div>
+                    <div class="settings-label">Clear Play History</div>
+                    <div class="settings-hint">Removes your recently played games</div>
+                </div>
+                <button class="settings-reset-btn" onclick="clearHistory()">Clear</button>
+            </div>
+
+        </div>
+        <div style="padding-top:16px;display:flex;align-items:center;">
+            <button class="settings-save-btn" onclick="saveSettingsUI()">Save Settings</button>
+            <button class="settings-reset-btn" onclick="resetSettingsUI()">Reset to Defaults</button>
+        </div>
+        <p id="settings-saved-msg" style="color:var(--accent);font-weight:700;font-size:14px;margin-top:12px;display:none;">✓ Settings saved!</p>
+    </div>
+    <footer class="site-footer">
+        <p>Coded with 💛 by <strong style="color:var(--accent)">Silver</strong> · THE ARCADE EDITION</p>
+    </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     GAME OVERLAY — sits below nav, inside the hub
+══════════════════════════════════════════════════════════════════ -->
+<div id="game-overlay" style="display:none;position:fixed;top:60px;left:0;right:0;bottom:0;z-index:400;background:#000;flex-direction:column;">
+    <div style="display:flex;align-items:center;gap:12px;background:#0f0f13;border-bottom:1px solid rgba(255,255,255,0.07);padding:0 16px;height:44px;flex-shrink:0;">
+        <button onclick="closeGameOverlay()" style="background:none;border:none;color:var(--accent);font-family:Outfit,sans-serif;font-size:13px;font-weight:700;cursor:pointer;padding:6px 0;letter-spacing:0.02em;">← Back to Games</button>
+        <span style="color:rgba(255,255,255,0.2);">|</span>
+        <span id="game-overlay-title" style="color:#e2e2e6;font-family:Outfit,sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;flex:1;"></span>
+        <button id="game-expand-btn" onclick="toggleGameExpand()" style="background:none;border:1px solid rgba(255,255,255,0.12);border-radius:6px;color:#7a7a82;font-family:Outfit,sans-serif;font-size:12px;padding:5px 11px;cursor:pointer;transition:color 0.15s,border-color 0.15s;">⛶ Expand</button>
+    </div>
+    <iframe id="game-overlay-frame" src="" allowfullscreen allow="autoplay; fullscreen; gamepad" style="flex:1;width:100%;border:none;display:block;"></iframe>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════════════════════ -->
+<script src="games.js"></script>
+<script src="assets/app.js"></script>
+
+<script>
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+</script>
+
+<script>
+// ══════════════════════════════════════════════════════════
+// HUB NAVIGATION
+// ══════════════════════════════════════════════════════════
+function showSection(id) {
+    document.querySelectorAll('.hub-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.hub-pill').forEach(p => p.classList.remove('active'));
+    document.getElementById('section-' + id)?.classList.add('active');
+    document.querySelector(`.hub-pill[data-section="${id}"]`)?.classList.add('active');
+
+    if (id === 'home')     { setTimeout(initNetwork, 50); setTimeout(renderHeroPreviews, 10); setTimeout(renderRecent, 10); setTimeout(renderPopular, 10); setTimeout(renderCategories, 10); }
+    if (id === 'games')    { renderAllGames(); renderTagFilters(); }
+    if (id === 'anime')    { renderAnimeLibrary(); }
+    if (id === 'movies')   { renderMovieLibrary(); }
+    if (id === 'manga')    { renderMangaLibrary(); }
+    if (id === 'disguise') { setTimeout(() => initDisguiseCanvas(), 50); initDisguisePage(); }
+    if (id === 'settings') { initSettingsUI(); }
+    if (id === 'proxies')  { renderProxies(); }
+    if (id === 'apps')     { renderApps(); }
+
+    window.scrollTo(0, 0);
+}
+
+document.querySelectorAll('.hub-pill').forEach(btn => {
+    btn.addEventListener('click', () => showSection(btn.dataset.section));
+});
+
+// ══════════════════════════════════════════════════════════
+// HOME PAGE
+// ══════════════════════════════════════════════════════════
+function renderHeroPreviews() {
+    const hero = document.getElementById('hero-previews');
+    if (!hero) return;
+    hero.innerHTML = '';
+    const picks = GAMES.slice(0, 3);
+    if (!picks.length) return;
+    const big = document.createElement('a');
+    big.href = '#'; big.className = 'hero-preview-big';
+    big.innerHTML = `<img src="${getGameImg(picks[0])}" alt="${picks[0].title}"><span>${picks[0].title}</span>`;
+    big.onclick = e => { e.preventDefault(); recordPlay(picks[0]); showSection('games'); };
+    hero.appendChild(big);
+    const smalls = document.createElement('div');
+    smalls.className = 'hero-preview-smalls';
+    picks.slice(1).forEach(g => {
+        const a = document.createElement('a');
+        a.href = '#'; a.className = 'hero-preview-small';
+        a.innerHTML = `<img src="${getGameImg(g)}" alt="${g.title}"><span>${g.title}</span>`;
+        a.onclick = e => { e.preventDefault(); recordPlay(g); showSection('games'); };
+        smalls.appendChild(a);
+    });
+    hero.appendChild(smalls);
+}
+
+function renderRecent() {
+    const history = getHistory();
+    const row = document.getElementById('recent-row');
+    if (!row) return;
+    row.innerHTML = '';
+    if (!history.length) { row.innerHTML = '<p class="empty-note">Nothing yet — go break something! 🎮</p>'; return; }
+    history.slice(0,8).forEach(h => {
+        const g = GAMES.find(x => x.file === h.file);
+        if (g) row.appendChild(buildCard(g));
+    });
+}
+
+function renderPopular() {
+    const row = document.getElementById('popular-row');
+    if (!row) return;
+    row.innerHTML = '';
+    GAMES.slice(0,12).forEach(g => row.appendChild(buildCard(g)));
+}
+
+function renderCategories() {
+    const tags = ['action','puzzle','platformer','racing','rpg','sandbox','horror','idle','sports','io','multiplayer'];
+    const icons = {action:'⚔️',puzzle:'🧩',platformer:'🏃',racing:'🏎️',rpg:'🗡️',sandbox:'🏗️',horror:'👻',idle:'🖱️',sports:'⚽',io:'🌐',multiplayer:'👥'};
+    const grid = document.getElementById('category-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    tags.forEach(tag => {
+        const count = GAMES.filter(g => (g.tags||[]).includes(tag)).length;
+        const btn = document.createElement('button');
+        btn.className = 'cat-btn';
+        btn.innerHTML = `<span class="cat-icon">${icons[tag]||'🎮'}</span><span class="cat-name">${tag.charAt(0).toUpperCase()+tag.slice(1)}</span><span class="cat-count">${count} games</span>`;
+        btn.onclick = () => { showSection('games'); setTimeout(() => filterByTag(tag), 100); };
+        grid.appendChild(btn);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initNetwork();
+    renderHeroPreviews();
+    renderRecent();
+    renderPopular();
+    renderCategories();
+    document.getElementById('footer-count').textContent = GAMES.length;
+    initMusicPlayer();
+});
+
+// ══════════════════════════════════════════════════════════
+// GAMES
+// ══════════════════════════════════════════════════════════
+function getGameImg(game) {
+    if (!game.img) return 'favicon.png';
+    const isUrl = /^https?:\/\/|\/\//.test(game.img);
+    return isUrl ? game.img : 'gameimages/' + game.img;
+}
+
+let activeTag = null;
+
+function renderTagFilters() {
+    const tags = ['all','action','puzzle','platformer','racing','rpg','sandbox','horror','idle','sports','io','multiplayer'];
+    const container = document.getElementById('tag-filters');
+    if (!container || container.children.length) return;
+    tags.forEach(t => {
+        const btn = document.createElement('button');
+        btn.className = 'tag-btn' + (t === 'all' ? ' active' : '');
+        btn.textContent = t === 'all' ? 'All' : t.charAt(0).toUpperCase()+t.slice(1);
+        btn.dataset.tag = t;
+        btn.onclick = () => filterByTag(t);
+        container.appendChild(btn);
+    });
+}
+
+function filterByTag(tag) {
+    activeTag = tag === 'all' ? null : tag;
+    document.querySelectorAll('#tag-filters .tag-btn').forEach(b => b.classList.toggle('active', b.dataset.tag === tag));
+    filterGames();
+}
+
+function renderAllGames() {
+    const grid = document.getElementById('game-grid');
+    if (!grid) return;
+    const q = (document.getElementById('games-search')?.value || '').toLowerCase();
+    const filtered = GAMES.filter(g => {
+        const matchQ = !q || g.title.toLowerCase().includes(q);
+        const matchTag = !activeTag || (g.tags||[]).includes(activeTag);
+        return matchQ && matchTag;
+    }).sort((a,b) => a.title.localeCompare(b.title));
+    grid.innerHTML = '';
+    if (!filtered.length) { grid.innerHTML = '<p class="no-results">No games found. Try a different search!</p>'; return; }
+    filtered.forEach(g => grid.appendChild(buildCard(g)));
+}
+
+function filterGames() { renderAllGames(); }
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('games-search')?.addEventListener('input', filterGames);
+});
+
+// ══════════════════════════════════════════════════════════
+// ANIME — MULTI-SERIES
+// ══════════════════════════════════════════════════════════
+const ANIME_CATALOG = [
+    {
+        id: 'jjk',
+        title: 'Jujutsu Kaisen',
+        thumb: 'https://lh3.googleusercontent.com/pw/AP1GczMfE8PlhsTcq7ktFSVATbhNoKUy42dXV8RN49rw3xy97je1ZTSwuT3k-yIxleFK4kAv3tJhXBaqXHgg-aCy4SHH4oWsd6C5NkrvJ33DJxlZJDUJkS8gjZSZ7mfo_NViTvZQrx2NilVwV8duoaxFdPhh=w1672-h941-s-no-gm',
+        coverThumb: 'https://lh3.googleusercontent.com/pw/AP1GczMfE8PlhsTcq7ktFSVATbhNoKUy42dXV8RN49rw3xy97je1ZTSwuT3k-yIxleFK4kAv3tJhXBaqXHgg-aCy4SHH4oWsd6C5NkrvJ33DJxlZJDUJkS8gjZSZ7mfo_NViTvZQrx2NilVwV8duoaxFdPhh=w1672-h941-s-no-gm',
+        genre: 'Action · Supernatural',
+        seasons: [
+            {
+                label: 'Season 1 (2020)',
+                heroImage: 'https://lh3.googleusercontent.com/pw/AP1GczMfE8PlhsTcq7ktFSVATbhNoKUy42dXV8RN49rw3xy97je1ZTSwuT3k-yIxleFK4kAv3tJhXBaqXHgg-aCy4SHH4oWsd6C5NkrvJ33DJxlZJDUJkS8gjZSZ7mfo_NViTvZQrx2NilVwV8duoaxFdPhh=w1672-h941-s-no-gm',
+                description: 'After swallowing a cursed finger, Yuji Itadori becomes the vessel for the King of Curses and joins a secret society of sorcerers.',
+                episodes: [
+                    {title:'Ryōmen Sukuna',subLink:'https://drive.google.com/file/d/1w05hv0eqevqNsx2-SmepGTozUZ3jlRgu/preview',thumb:'https://lh3.googleusercontent.com/pw/AP1GczOk7-hQcLmg7xu-2HbIidMoyQOoUx0f4gLWrdbSQzoQxBLbX1UFu4w0Bf-8o3ywOrzEiumgJwjKx5Y6k5QzWxzekRntDDWu966bRmQSC6PMvhRSkjT_1HZ96J-VWDVZ_I9-26gxPW5y7NXtkKC_T9I=w1920-h1080-s-no-gm'},
+                    {title:'For Myself',subLink:'https://drive.google.com/file/d/1S0YN5ZYV2KWGH-Qm8wvOAuV_GdEx7drP/preview',thumb:'https://lh3.googleusercontent.com/pw/AP1GczPYT-GGhfSMsV7JDUcAa2KbUnWQxiHq0QrnAuHkgkS1O-T7YysqKbY1aorpEwIOEanETvz_ELEiy9Bxwun9PBTdh8GZ1cjTG_K-2zVHe_Ixi45XjGph8zSjb70-5itIII_cDpMHUNgJj9i94x-Kg=w1089-h608-s-no-gm'},
+                    {title:'Girl of Steel',subLink:'https://drive.google.com/file/d/1vHqiopYe3ZJ8WgJHQoQjZCM1ZQL9BL4z/preview',thumb:'https://lh3.googleusercontent.com/pw/AP1GczNigCUiSTUX1ZCBUnSdVYeTW2_46pB9NQBoVRgE2wcV1BYy3g84LGpiHohJWdPdvIQjhhprJH9LBM0L9t5KipFdGkRPq6ZAEDf20h4qHq700EYpQ37R95P5H4jqMUPgpwIYpi0wXmvZ-MZL8usVZ8A=w1920-h1080-s-no-gm'},
+                    {title:'Curse Womb Must Die',subLink:'https://drive.google.com/file/d/1PgVMpqATCAc5IMSGk9BBM3SVHfiug_6N/preview',thumb:'https://lh3.googleusercontent.com/pw/AP1GczPgXCtLZ6ZfAoefB4VSKZw3tmLn-nmqkxMXcsDherzN5H6g-09zKT6nGUyVw4SOAcvcyYooQ-EWx0jDhotkuqFIbMfFUPVpKTf4skVau1w5KNLcDtQc9mzN5dewnS8_QB6GnIBBjfhbJGoMIH1ysvY=w1920-h1080-s-no-gm'},
+                    {title:'Curse Womb Must Die -II-',subLink:'https://drive.google.com/file/d/1QUdJaSQlLGP29W-JQ5co3zZVhBXm_UWr/preview',thumb:'https://lh3.googleusercontent.com/pw/AP1GczMXLIUrgCmCXo_XUqBmpsjMsbDi31ZyitOc4WPj8Mu0vSfNifrqeWhIqT8c6kKbkejjMp2xiLX7rxRHgB5pJAaIC3-BSv44nwi7ZST-kXji26ne3cZjycDFUT6dyI66EeeYZWTnL6QiZCg2tVA1Z4M=w1024-h576-s-no-gm'},
+                    {title:'After Rain',subLink:'https://drive.google.com/file/d/14XUDq8lDlEdLDAng0chsrmPxPo3mHdgQ/preview',thumb:'https://lh3.googleusercontent.com/pw/AP1GczMepr2jh5ntWVFIEmxWduI_GevzZzuxP78iano7R4drDC-g1vrA3WD_obdFsNUHkCiUzScygqy7fbf-2ppm8w9VvBHw5JJdtMobrdZk8CJOXJavUhA73VumNpAbttteNpcOTPFppB8B9qwjKPmTfC0=w1920-h1080-s-no-gm'},
+                    {title:'Assault',subLink:'https://drive.google.com/file/d/1AJQ0Pzkf8aL0AMZBH1OiXXBS_RWZrH0H/preview',thumb:'https://lh3.googleusercontent.com/pw/AP1GczOU2hDd9nC-JciG56Ye-4Q3PFpjARn9_VZcBdu06gvshmaDHD1PdsBZbKz4jcYaPi2ORcrqTcpQHZNDHpEDJGta_D87iR_naEvXPws1kKbynx-XDA9pGcVfhoD74RoqJ7-CmQbO2XvVPaYzsMr_u2k=w1920-h1080-s-no-gm'},
+                    {title:'Boredom',subLink:'https://drive.google.com/file/d/1xD0BqlDeMEfMiF48NfudeYtte4mQ5QYY/preview',thumb:'https://lh3.googleusercontent.com/pw/AP1GczO5UkX46W9nwVkYLsYuUUVFpbliFUjFu3OtPZG9lt2CNBe_f-21p3f_DHruAehBXui8LaXsVt7qLkKbDYdoUqwD6ZUhPgCHNA90JK5sEg5Sfmn42oq1w0LiQedqQwmh0CcEdbBk8XCXuyzWsrJUcF8=w2570-h1445-s-no-gm'},
+                    {title:'Small Fry and Reverse Retribution',subLink:'https://drive.google.com/file/d/1BZSYXnORvUryj5-Tzi__oGiDTN1JDXoi/preview',thumb:'https://lh3.googleusercontent.com/pw/AP1GczNRjtAxzA7tmk2heUbmIEK8h-CoKJVkZlTZSH9SZXCr6jz9eZpTryhLSSXEUISPZ13KuE0Hr3DvPJ_9xJwfbsccarxo2aqVNyBOB7VvgU3OS-iK-P10un2dyz6cnNtidUIY8zMSWNbIceb07e6_kMg=w1920-h1080-s-no-gm'},
+                    {title:'Idle Transfiguration',subLink:'https://drive.google.com/file/d/1TioplLbRDxpmBBZtmXfj1xlWW_m5wdoK/preview',thumb:'https://lh3.googleusercontent.com/pw/AP1GczPj2vbFZSiEBgm24rlizuv9uc8CFK91gRRVUJS4gzq4I-2yfGnLWw_SlA3NXnqKILmO_KZ6xp71qwqBMUnFWkDCioNfDpdObNxTGerELXnla8za3sZe1cjQqqUxrI7-NW5QvVrm5bPsN5DC_ZWgOQQ=w1920-h1080-s-no-gm'},
+                    {title:'Narrow-minded',subLink:'https://drive.google.com/file/d/19c2JdI5yeXZI2HgTcbPuMLmONVQOetca/preview',thumb:'https://lh3.googleusercontent.com/pw/AP1GczM9jTRAZhXACdXDqV5UQyUWxDyXfsj-REqpmnbqba0due_riSzhwYkNMxCnhpuVrqc2otnEAMRwgPd68LHODPL6OWRBqW3Y9OEorAZyktj98dngE4R7EsGan2amBmSaO1q6Di_ByFsxXD-WBDNWxtQ=w660-h371-s-no-gm'},
+                    {title:'To You, Someday',subLink:'',thumb:'https://lh3.googleusercontent.com/pw/AP1GczOH_8S9ZoU7_BvjY9fCwTaMSGXz9j6aSpfpKfO0cIn9TOZG-cFQXB_VjRJPCyzwzW-4gn78GGETDDJJHKx03OZvCawQLD1Fd9FAUYRgZ0xlS3a6LTqYA5QMdgX89dIw52UqRe8Qh9eqELaedLmqh84=w660-h371-s-no-gm'},
+                    {title:'Tomorrow',subLink:'',thumb:'https://lh3.googleusercontent.com/pw/AP1GczMHVKZwmOJCELgrA6sp0DpRzHD4GUQZbxojX7yQhEIOx1NOigoSxqTrL8hIALztRa888vfRlOGuczxxQRngWtErItneidLGvrn3_CI9ih6GmM7O4yUQHYN6pZruO4U-ODiKOqpitF3UVUMz9ITLz2Q=w1920-h1080-s-no-gm'},
+                ]
+            },
+            {
+                label: 'Season 2 (2023)',
+                heroImage: 'https://lh3.googleusercontent.com/pw/AP1GczMfE8PlhsTcq7ktFSVATbhNoKUy42dXV8RN49rw3xy97je1ZTSwuT3k-yIxleFK4kAv3tJhXBaqXHgg-aCy4SHH4oWsd6C5NkrvJ33DJxlZJDUJkS8gjZSZ7mfo_NViTvZQrx2NilVwV8duoaxFdPhh=w1672-h941-s-no-gm',
+                description: 'The Hidden Inventory arc and the explosive Shibuya Incident — Gojo\'s past is revealed and the jujutsu world is turned upside down.',
+                episodes: [
+                    {title:'Hidden Inventory',subLink:'',thumb:''},
+                    {title:'Hidden Inventory 2',subLink:'',thumb:''},
+                    {title:'Hidden Inventory 3',subLink:'',thumb:''},
+                    {title:'Hidden Inventory 4',subLink:'',thumb:''},
+                    {title:'Premature Death',subLink:'',thumb:''},
+                ]
+            }
+        ]
+    },
+    {
+        id: 'placeholder1',
+        title: 'Add Another Anime',
+        thumb: '',
+        coverThumb: '',
+        genre: 'Your pick',
+        seasons: [
+            { label: 'Season 1', heroImage: '', description: 'Edit ANIME_CATALOG in index.html to add your own series here.', episodes: [] }
+        ]
+    }
+];
+
+let animeCurrentSeries = null;
+let animeCurrentSeason = 0;
+let animeCurrentEp = 0;
+let animeHideTimer = null;
+
+function renderAnimeLibrary() {
+    const libView = document.getElementById('anime-library-view');
+    const showView = document.getElementById('anime-show-view');
+    libView.style.display = '';
+    showView.style.display = 'none';
+    const grid = document.getElementById('anime-series-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    ANIME_CATALOG.forEach(series => {
+        const card = document.createElement('div');
+        card.className = 'anime-series-card';
+        card.innerHTML = `
+            <img class="anime-series-thumb" src="${series.coverThumb || series.thumb}" alt="${series.title}" onerror="this.style.background='var(--surface2)'">
+            <div class="anime-series-info">
+                <div class="anime-series-name">${series.title}</div>
+                <div class="anime-series-meta">${series.seasons.length} Season${series.seasons.length!==1?'s':''} · ${series.genre}</div>
+            </div>
+        `;
+        card.onclick = () => openAnimeSeries(series);
+        grid.appendChild(card);
+    });
+}
+
+function openAnimeSeries(series) {
+    animeCurrentSeries = series;
+    animeCurrentSeason = 0;
+    animeCurrentEp = 0;
+    document.getElementById('anime-library-view').style.display = 'none';
+    document.getElementById('anime-show-view').style.display = '';
+    renderAnimeShowView();
+}
+
+function renderAnimeShowView() {
+    if (!animeCurrentSeries) return;
+    const season = animeCurrentSeries.seasons[animeCurrentSeason];
+    const app = document.getElementById('anime-app');
+    const selectorEl = document.getElementById('ap-season-selector');
+
+    // Season selector bar
+    if (animeCurrentSeries.seasons.length > 1) {
+        let selHtml = `<span class="ap-season-label">Season</span>
+        <select class="ap-season-select" onchange="switchAnimeSeason(this.value)">`;
+        animeCurrentSeries.seasons.forEach((s, i) => {
+            selHtml += `<option value="${i}" ${i===animeCurrentSeason?'selected':''}>${s.label}</option>`;
+        });
+        selHtml += `</select>`;
+        selHtml += `<button class="ap-back-to-library" onclick="renderAnimeLibrary();document.getElementById('anime-library-view').style.display='';document.getElementById('anime-show-view').style.display='none';">← All Anime</button>`;
+        selectorEl.innerHTML = selHtml;
+        selectorEl.style.display = 'flex';
+    } else {
+        selectorEl.innerHTML = `<button class="ap-back-to-library" onclick="renderAnimeLibrary();document.getElementById('anime-library-view').style.display='';document.getElementById('anime-show-view').style.display='none';">← All Anime</button>`;
+        selectorEl.style.display = 'flex';
+    }
+
+    const eps = (season.episodes||[]).map((ep, i) => {
+        const hasThumb = ep.thumb && ep.thumb !== '';
+        return `<div class="ep-card${i===animeCurrentEp?' active':''}" onclick="playAnimeEpisode(${i})">
+            <div class="ep-thumb">${!hasThumb?`<span class="ep-thumb-num">${i+1}</span>`:''}<img src="${ep.thumb}" loading="lazy"></div>
+            <div class="ep-info"><div class="ep-label">Episode ${i+1}</div><div class="ep-name">${ep.title}</div></div>
+        </div>`;
+    }).join('');
+
+    app.innerHTML = `
+        <div class="ap-hero">
+            <img class="ap-hero-img" src="${season.heroImage}" alt="${animeCurrentSeries.title}">
+            <div class="ap-hero-grad"></div>
+            <div class="ap-hero-content">
+                <div class="ap-badge">Now Streaming</div>
+                <div class="ap-title">${animeCurrentSeries.title}</div>
+                <div class="ap-meta"><span>${season.label}</span><span>${(season.episodes||[]).length} Episodes</span><span>${animeCurrentSeries.genre}</span></div>
+                <div class="ap-desc">${season.description}</div>
+                <div class="ap-actions">
+                    <button class="btn-ap-watch" onclick="playAnimeEpisode(${animeCurrentEp})">▶ Play Episode ${animeCurrentEp+1}</button>
+                </div>
+            </div>
+        </div>
+        <div class="ap-section"><div class="ap-section-title">Episodes</div><div class="ep-grid">${eps||'<p style="color:var(--muted);font-size:14px;">No episodes added yet for this season.</p>'}</div></div>
+    `;
+}
+
+function switchAnimeSeason(idx) {
+    animeCurrentSeason = parseInt(idx);
+    animeCurrentEp = 0;
+    renderAnimeShowView();
+}
+
+function playAnimeEpisode(i) {
+    animeCurrentEp = i;
+    const season = animeCurrentSeries.seasons[animeCurrentSeason];
+    const ep = season.episodes[i];
+    if (!ep || !ep.subLink) return;
+    const overlay = document.getElementById('ap-overlay');
+    overlay.classList.add('open');
+    document.getElementById('ap-frame').src = ep.subLink;
+    document.getElementById('ap-title').textContent = animeCurrentSeries.title;
+    document.getElementById('ap-ep-label').textContent = `${season.label} · E${i+1} — ${ep.title}`;
+    renderAnimeEpMini(i);
+    animeShowControls();
+}
+
+function renderAnimeEpMini(active) {
+    const season = animeCurrentSeries?.seasons[animeCurrentSeason];
+    document.getElementById('ep-mini-scroll').innerHTML = (season?.episodes||[]).map((ep,i) =>
+        `<button class="ep-mini${i===active?' active':''}" onclick="switchAnimeEp(${i})">Ep ${i+1}</button>`
+    ).join('');
+}
+
+function switchAnimeEp(i) {
+    animeCurrentEp = i;
+    playAnimeEpisode(i);
+    renderAnimeShowView();
+}
+
+function closeAnimePlayer() {
+    const overlay = document.getElementById('ap-overlay');
+    overlay.classList.remove('open','controls-visible');
+    document.getElementById('ap-frame').src = '';
+}
+
+function animeShowControls() {
+    const overlay = document.getElementById('ap-overlay');
+    overlay.classList.add('controls-visible');
+    overlay.classList.remove('cursor-hidden');
+    clearTimeout(animeHideTimer);
+    animeHideTimer = setTimeout(() => {
+        overlay.classList.remove('controls-visible');
+        overlay.classList.add('cursor-hidden');
+    }, 2500);
+}
+document.getElementById('ap-overlay').addEventListener('mousemove', animeShowControls);
+
+// ══════════════════════════════════════════════════════════
+// MOVIES — MULTI-TITLE LIBRARY
+// ══════════════════════════════════════════════════════════
+const MOVIES = [
+    {
+        title: "Avengers: Endgame",
+        year: "2019", rating: "PG-13", duration: "3h 01m", genre: "Action · Adventure",
+        description: "The surviving Avengers discover a way to use the Quantum Realm to travel back in time and retrieve the six Infinity Stones — planning to reverse Thanos's catastrophic snap and restore half of all life in the universe.",
+        heroImage: "https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg",
+        posterImage: "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+        videoLink: "https://drive.google.com/file/d/1LCun9zCSlTXwTM27uO-XY5TqsLGVO6eF/preview"
+    },
+    {
+        title: "Add Another Movie",
+        year: "–", rating: "–", duration: "–", genre: "Your pick",
+        description: "Edit the MOVIES array in index.html to add more films to the library.",
+        heroImage: "",
+        posterImage: "",
+        videoLink: ""
+    }
+];
+
+let movieHideTimer = null;
+
+function cleanEmbedUrl(url) {
+    const m = url && url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    return m ? `https://drive.google.com/file/d/${m[1]}/preview` : url;
+}
+
+function renderMovieLibrary() {
+    document.getElementById('movie-library-view').style.display = '';
+    document.getElementById('movie-show-view').style.display = 'none';
+    const grid = document.getElementById('movie-shelf-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    MOVIES.forEach((m, idx) => {
+        const card = document.createElement('div');
+        card.className = 'movie-shelf-card';
+        card.innerHTML = `
+            <img class="movie-shelf-thumb" src="${m.posterImage || m.heroImage}" alt="${m.title}" onerror="this.style.background='var(--surface2)'">
+            <div class="movie-shelf-info">
+                <div class="movie-shelf-name">${m.title}</div>
+                <div class="movie-shelf-meta">${m.year}${m.rating && m.rating!=='–' ? ' · '+m.rating : ''} · ${m.genre}</div>
+            </div>
+        `;
+        card.onclick = () => openMovieView(idx);
+        grid.appendChild(card);
+    });
+}
+
+function showMovieLibrary() {
+    renderMovieLibrary();
+}
+
+function openMovieView(idx) {
+    document.getElementById('movie-library-view').style.display = 'none';
+    document.getElementById('movie-show-view').style.display = '';
+    document.getElementById('movie-show-label').textContent = MOVIES[idx]?.title || '';
+    renderMovieDetail(idx);
+}
+
+function renderMovieDetail(idx) {
+    const m = MOVIES[idx];
+    const app = document.getElementById('movie-app');
+    app.innerHTML = `
+        <div class="movie-hero">
+            <img class="movie-hero-img" src="${m.heroImage}" alt="${m.title}">
+            <div class="movie-hero-grad"></div>
+            <div class="movie-hero-content">
+                <div class="movie-badge">Now Streaming</div>
+                <div class="movie-title">${m.title}</div>
+                <div class="movie-meta"><span>${m.year}</span><span>${m.rating}</span><span>${m.duration}</span><span>${m.genre}</span></div>
+                <div class="movie-desc">${m.description}</div>
+                ${m.videoLink ? `<button class="btn-movie-watch" onclick="playMovie(${idx})">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="12"><path d="M8 5v14l11-7z"/></svg>
+                    Start Watching
+                </button>` : `<p style="color:var(--muted);font-size:14px;">No video link added yet.</p>`}
+            </div>
+        </div>
+    `;
+}
+
+function playMovie(idx) {
+    const m = MOVIES[idx];
+    if (!m.videoLink) return;
+    document.getElementById('movie-overlay').classList.add('open');
+    document.getElementById('movie-frame').src = cleanEmbedUrl(m.videoLink);
+    document.getElementById('movie-p-title').textContent = m.title;
+    movieShowControls();
+}
+
+function closeMoviePlayer() {
+    const overlay = document.getElementById('movie-overlay');
+    overlay.classList.remove('open','controls-visible');
+    document.getElementById('movie-frame').src = '';
+    if (document.fullscreenElement) document.exitFullscreen();
+}
+
+function movieShowControls() {
+    const overlay = document.getElementById('movie-overlay');
+    overlay.classList.add('controls-visible');
+    overlay.classList.remove('cursor-hidden');
+    document.getElementById('movieTrigger').style.pointerEvents = 'none';
+    clearTimeout(movieHideTimer);
+    movieHideTimer = setTimeout(() => {
+        overlay.classList.remove('controls-visible');
+        overlay.classList.add('cursor-hidden');
+        document.getElementById('movieTrigger').style.pointerEvents = 'auto';
+    }, 2500);
+}
+
+function movieToggleFullscreen() {
+    const elem = document.getElementById('movie-overlay');
+    if (!document.fullscreenElement) elem.requestFullscreen?.();
+    else document.exitFullscreen?.();
+}
+
+document.getElementById('movie-overlay').addEventListener('mousemove', movieShowControls);
+document.getElementById('movieTrigger').addEventListener('mousemove', movieShowControls);
+
+// ══════════════════════════════════════════════════════════
+// MUSIC PLAYER
+// ══════════════════════════════════════════════════════════
+const musicLibrary = {
+    "gaming-hype": { name: "Gaming Energy", tracks: [
+        {title:"Doom Eternal Theme",artist:"Mick Gordon",ytId:"fmUDr2DO2is",customImg:"https://i.imgur.com/AbrZWBu.jpg"},
+        {title:"Megalovania",artist:"Toby Fox",ytId:"KK3KXAECte4",customImg:"https://cdna.artstation.com/p/assets/images/images/060/311/612/large/hudin-santos-megalovania-final.jpg?1678287327"}
+    ]},
+    "chill-vibes": { name: "Lofi Girl", tracks: [
+        {title:"Lofi Hip Hop Radio",artist:"Lofi Girl",ytId:"CFGLoQIhmow",customImg:"https://www.lofigirl.com/_next/image?url=https%3A%2F%2Fmedia.lofigirl.com%2Fmain.png&w=3840&q=75"},
+        {title:"Synthwave Beats",artist:"Lofi Girl",ytId:"fhL67fnDXcU",customImg:"https://img.youtube.com/vi/fhL67fnDXcU/hqdefault.jpg"}
+    ]},
+    "my-custom-playlist": { name: "Starboy", tracks: [
+        {title:"Starboy",artist:"The Weeknd",ytId:"34Na4j8AVgA",customImg:"https://i.scdn.co/image/ab67616d0000b2734718e2b124f79258be7bc452"}
+    ]},
+    "my-playlist": { name: "Classical Essentials", tracks: [
+        {title:"William Tell Overture",artist:"Gioachino Rossini",ytId:"AnNKsk2a0fI",customImg:"https://t4.ftcdn.net/jpg/19/17/93/81/360_F_1917938128_lpRFyoql2siRu6ZTdHZ7PUFIIoni5Nz9.jpg"},
+        {title:"Can-can",artist:"Jacques Offenbach",ytId:"4Diu2N8TGKA",customImg:"https://t4.ftcdn.net/jpg/19/17/93/81/360_F_1917938128_lpRFyoql2siRu6ZTdHZ7PUFIIoni5Nz9.jpg"}
+    ]}
+};
+
+let ytPlayer = null, ytTimer = null, activePlaylistKey = '', currentTrack = null;
+
+function initMusicPlayer() {
+    const sel = document.getElementById('playlistSelect');
+    if (!sel || sel.options.length > 1) return;
+    for (const key in musicLibrary) {
+        const opt = document.createElement('option');
+        opt.value = key; opt.innerText = musicLibrary[key].name;
+        sel.appendChild(opt);
+    }
+    resetMusicUI();
+}
+
+function resetMusicUI() {
+    document.getElementById('trackTitle').innerText = 'Pick a playlist to begin';
+    document.getElementById('trackArtist').innerText = '';
+    document.getElementById('mainArtwork').style.display = 'none';
+    document.getElementById('artPlaceholder').style.display = 'block';
+    document.getElementById('trackListDeck').innerHTML = '<li style="text-align:center;color:var(--muted);padding:20px;font-size:14px;">Select an album above to view tracks</li>';
+    currentTrack = null;
+}
+
+function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('yt-hidden-engine', {
+        height:'1', width:'1',
+        playerVars:{autoplay:0,controls:0,modestbranding:1,rel:0},
+        events:{onStateChange: onYTStateChange}
+    });
+}
+
+function getTrackImage(song) {
+    return (song.customImg && song.customImg.trim()) ? song.customImg : `https://img.youtube.com/vi/${song.ytId}/hqdefault.jpg`;
+}
+
+function switchPlaylist(key) {
+    activePlaylistKey = key;
+    document.getElementById('searchBar').value = '';
+    renderTrackList(musicLibrary[key].tracks);
+}
+
+function renderTrackList(tracks) {
+    const deck = document.getElementById('trackListDeck');
+    deck.innerHTML = '';
+    if (!tracks.length) { deck.innerHTML = '<li style="text-align:center;color:var(--muted);padding:20px;font-size:14px;">No matches found</li>'; return; }
+    tracks.forEach(song => {
+        const li = document.createElement('li');
+        li.className = 'track-node' + (currentTrack && currentTrack.ytId === song.ytId ? ' active' : '');
+        li.innerHTML = `<img class="track-node-thumb" src="${getTrackImage(song)}" alt=""><div class="track-node-meta"><div class="track-node-title">${song.title}</div><div class="track-node-artist">${song.artist}</div></div>`;
+        li.onclick = () => playSong(song, li);
+        deck.appendChild(li);
+    });
+}
+
+function searchAllTracks() {
+    const q = document.getElementById('searchBar').value.toLowerCase();
+    if (!q && !activePlaylistKey) { resetMusicUI(); return; }
+    if (!q) { renderTrackList(musicLibrary[activePlaylistKey].tracks); return; }
+    let results = [];
+    for (const key in musicLibrary) musicLibrary[key].tracks.forEach(t => { if ((t.title+t.artist).toLowerCase().includes(q) && !results.some(r=>r.ytId===t.ytId)) results.push(t); });
+    renderTrackList(results);
+}
+
+function playSong(song, el) {
+    currentTrack = song;
+    if (!ytPlayer || typeof ytPlayer.loadVideoById !== 'function') return;
+    document.querySelectorAll('.track-node').forEach(n => n.classList.remove('active'));
+    if (el) el.classList.add('active');
+    document.getElementById('trackTitle').innerText = song.title;
+    document.getElementById('trackArtist').innerText = song.artist;
+    const art = document.getElementById('mainArtwork');
+    art.src = getTrackImage(song); art.style.display = 'block';
+    document.getElementById('artPlaceholder').style.display = 'none';
+    ytPlayer.loadVideoById(song.ytId);
+    document.getElementById('playBtnGraphic').innerText = '⏸';
+}
+
+function togglePlayState() {
+    if (!ytPlayer || !currentTrack) return;
+    const s = ytPlayer.getPlayerState();
+    if (s === YT.PlayerState.PLAYING) ytPlayer.pauseVideo(); else ytPlayer.playVideo();
+}
+
+function onYTStateChange(e) {
+    clearInterval(ytTimer);
+    if (e.data === YT.PlayerState.PLAYING) { document.getElementById('playBtnGraphic').innerText='⏸'; ytTimer = setInterval(updateMusicProgress, 250); }
+    else { document.getElementById('playBtnGraphic').innerText='▶'; }
+}
+
+function updateMusicProgress() {
+    if (!ytPlayer || typeof ytPlayer.getCurrentTime !== 'function') return;
+    const cur = ytPlayer.getCurrentTime(), dur = ytPlayer.getDuration();
+    if (dur > 0 && isFinite(dur)) {
+        document.getElementById('progressBar').value = (cur/dur)*1000;
+        document.getElementById('currentTime').innerText = fmtTime(cur);
+        document.getElementById('totalTime').innerText = fmtTime(dur);
+    }
+}
+
+function seekVideo(v) {
+    if (!ytPlayer || typeof ytPlayer.getDuration !== 'function') return;
+    const dur = ytPlayer.getDuration();
+    if (dur > 0 && isFinite(dur)) ytPlayer.seekTo((v/1000)*dur, true);
+}
+
+function changeVolume(v) { if (ytPlayer && typeof ytPlayer.setVolume === 'function') ytPlayer.setVolume(v); }
+function fmtTime(t) { const m=Math.floor(t/60),s=Math.floor(t%60); return `${m}:${s<10?'0':''}${s}`; }
+
+// ══════════════════════════════════════════════════════════
+// MANGA — MULTI-SERIES LIBRARY
+// ══════════════════════════════════════════════════════════
+const MANGA_CATALOG = [
+    {
+        id: 'jjk',
+        title: 'Jujutsu Kaisen',
+        author: 'Gege Akutami',
+        genre: 'Action · Supernatural',
+        coverUrl: 'https://upload.wikimedia.org/wikipedia/en/5/5f/Jujutsu_Kaisen_manga_vol_1.jpg',
+        volumes: [
+            {title:'Jujutsu Kaisen, Vol. 0',spineUrl:'https://raw.githubusercontent.com/the-arcade-edition/spineart/main/vol0',summary:'Yuta Okkotsu is haunted by his childhood friend Rika, now a powerful cursed spirit.',genre:'Action · Supernatural',publisher:'Shonen Jump'},
+            {title:'Jujutsu Kaisen, Vol. 1',spineUrl:'https://raw.githubusercontent.com/the-arcade-edition/spineart/main/vol1',summary:"Yuji Itadori's immense physical strength is extraordinary — but after swallowing Sukuna's finger, his life changes forever.",genre:'Action · Supernatural',publisher:'Shonen Jump'},
+            {title:'Vol. 2',spineUrl:'https://raw.githubusercontent.com/the-arcade-edition/spineart/main/vol2',summary:'A cursed womb appears at a detention facility. Itadori and his classmates are dispatched — and the mission turns deadly.',genre:'Action · Supernatural',publisher:'Shonen Jump'},
+            {title:'Vol. 3',spineUrl:'https://raw.githubusercontent.com/the-arcade-edition/spineart/main/vol3',summary:'The Kyoto Goodwill Event approaches. Tensions simmer as Tokyo and Kyoto students prepare to clash.',genre:'Action · Supernatural',publisher:'Shonen Jump'},
+            {title:'Vol. 4',spineUrl:'https://raw.githubusercontent.com/the-arcade-edition/spineart/main/vol4',summary:"Investigating strange deaths, Itadori befriends Junpei — a troubled student caught in a cursed spirit's web.",genre:'Action · Supernatural',publisher:'Shonen Jump'},
+            {title:'Vol. 5',spineUrl:'https://raw.githubusercontent.com/the-arcade-edition/spineart/main/vol5',summary:'Everyone is shocked Itadori is alive — but there\'s no time for reunion. The fight against the cursed spirits escalates.',genre:'Action · Supernatural',publisher:'Shonen Jump'},
+            {title:'Vol. 6',spineUrl:'https://raw.githubusercontent.com/the-arcade-edition/spineart/main/vol6',summary:'The Goodwill Event turns dangerous when the Kyoto school receives orders to assassinate Itadori.',genre:'Action · Supernatural',publisher:'Shonen Jump'},
+            {title:'Vol. 7',spineUrl:'https://raw.githubusercontent.com/the-arcade-edition/spineart/main/vol7',summary:'Mysterious deaths pile up. Could these incidents be connected to Sukuna\'s remaining fingers scattered across Japan?',genre:'Action · Supernatural',publisher:'Shonen Jump'},
+            {title:'Vol. 8',spineUrl:'https://raw.githubusercontent.com/the-arcade-edition/spineart/main/vol8',summary:'Itadori and classmates face two reincarnated Cursed Womb: Death Paintings brothers in a brutal confrontation.',genre:'Action · Supernatural',publisher:'Shonen Jump'},
+            {title:'Vol. 9',spineUrl:'https://raw.githubusercontent.com/the-arcade-edition/spineart/main/vol9',summary:'A flashback: young Gojo and Geto are assigned to escort the Star Plasma Vessel to Master Tengen.',genre:'Action · Supernatural',publisher:'Shonen Jump'},
+            {title:'Vol. 10',spineUrl:'https://raw.githubusercontent.com/the-arcade-edition/spineart/main/vol10',summary:'Kokichi Muta prepares to betray the cursed spirits. His sacrificial plan against Mahito begins.',genre:'Action · Supernatural',publisher:'Shonen Jump'},
+            {title:'Vol. 11',spineUrl:'https://raw.githubusercontent.com/the-arcade-edition/spineart/main/vol11',summary:'Shibuya station fills with civilians and transfigured humans. The curtain falls — the Shibuya Incident begins.',genre:'Action · Supernatural',publisher:'Shonen Jump'},
+            {title:'Vol. 12',spineUrl:'https://raw.githubusercontent.com/the-arcade-edition/spineart/main/vol12',summary:'The Shibuya Incident reaches a crisis point. A ghost from the past — Toji Zenin — reappears on the battlefield.',genre:'Action · Supernatural',publisher:'Shonen Jump'},
+        ]
+    },
+    {
+        id: 'placeholder',
+        title: 'Add Another Series',
+        author: 'Your pick',
+        genre: 'Any genre',
+        coverUrl: '',
+        volumes: []
+    }
+];
+
+function renderMangaLibrary() {
+    document.getElementById('manga-library-view').style.display = '';
+    document.getElementById('manga-shelf-view').style.display = 'none';
+    const grid = document.getElementById('manga-series-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    MANGA_CATALOG.forEach(series => {
+        const card = document.createElement('div');
+        card.className = 'manga-series-card';
+        card.innerHTML = `
+            <img class="manga-series-cover" src="${series.coverUrl}" alt="${series.title}" onerror="this.style.background='var(--surface2)'">
+            <div class="manga-series-info">
+                <div class="manga-series-name">${series.title}</div>
+                <div class="manga-series-author">${series.author}</div>
+            </div>
+        `;
+        card.onclick = () => openMangaShelf(series);
+        grid.appendChild(card);
+    });
+}
+
+function showMangaLibrary() {
+    document.getElementById('manga-library-view').style.display = '';
+    document.getElementById('manga-shelf-view').style.display = 'none';
+}
+
+function openMangaShelf(series) {
+    document.getElementById('manga-library-view').style.display = 'none';
+    const shelfView = document.getElementById('manga-shelf-view');
+    shelfView.style.display = '';
+    document.getElementById('manga-shelf-series-title').textContent = series.title;
+
+    const shelf = document.getElementById('manga-shelf');
+    shelf.innerHTML = '';
+
+    if (!series.volumes.length) {
+        shelf.innerHTML = '<p style="color:var(--muted);font-size:14px;padding:40px;">No volumes added yet. Edit MANGA_CATALOG in index.html to add some!</p>';
+        return;
+    }
+
+    const perRow = 7;
+    for (let i = 0; i < series.volumes.length; i += perRow) {
+        const rowVols = series.volumes.slice(i, i + perRow);
+        const rowEl = document.createElement('div');
+        rowEl.className = 'shelf-row-wrap';
+        const booksEl = document.createElement('div');
+        booksEl.className = 'books-container';
+        rowVols.forEach(vol => {
+            booksEl.innerHTML += `
+                <div class="book-hitbox">
+                    <div class="manga-book" style="--spine-art:url('${vol.spineUrl}')">
+                        <div class="manga-spine"></div>
+                        <div class="manga-details">
+                            <div class="manga-details-inner">
+                                <h3>${vol.title}</h3>
+                                <p class="manga-author">${series.author}</p>
+                                ${vol.genre ? `<div class="manga-meta-row"><strong>Genre:</strong> ${vol.genre}</div>` : ''}
+                                <p class="manga-summary">${vol.summary}</p>
+                                ${vol.publisher ? `<div class="manga-footer-tags">${vol.publisher}</div>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        const lineEl = document.createElement('div');
+        lineEl.className = 'shelf-line';
+        rowEl.appendChild(booksEl);
+        rowEl.appendChild(lineEl);
+        shelf.appendChild(rowEl);
+    }
+}
+
+// ══════════════════════════════════════════════════════════
+// APPS
+// ══════════════════════════════════════════════════════════
+// To add an app: add an entry to the APPS array below.
+// icon: use Google favicon service — https://www.google.com/s2/favicons?domain=SITE.com&sz=64
+// url:  the full URL of the app (must support being embedded in an iframe)
+//       Note: some sites (Google, Twitter/X) block iframe embedding — open those in a new tab.
+const APPS = [
+    {
+        name: 'YouTube',
+        icon: 'https://www.google.com/s2/favicons?domain=youtube.com&sz=64',
+        url:  'https://www.youtube.com',
+        desc: 'Watch videos',
+        color: '#FF0000',
+        newTab: true,   // YouTube blocks iframes — opens in new tab
+    },
+    {
+        name: 'Spotify',
+        icon: 'https://www.google.com/s2/favicons?domain=spotify.com&sz=64',
+        url:  'https://open.spotify.com',
+        desc: 'Stream music',
+        color: '#1DB954',
+        newTab: false,
+    },
+    {
+        name: 'Google Docs',
+        icon: 'https://www.google.com/s2/favicons?domain=docs.google.com&sz=64',
+        url:  'https://docs.google.com',
+        desc: 'Write & edit docs',
+        color: '#4285F4',
+        newTab: false,
+    },
+    {
+        name: 'Google Slides',
+        icon: 'https://www.google.com/s2/favicons?domain=slides.google.com&sz=64',
+        url:  'https://slides.google.com',
+        desc: 'Make presentations',
+        color: '#F4B400',
+        newTab: false,
+    },
+    {
+        name: 'Canva',
+        icon: 'https://www.google.com/s2/favicons?domain=canva.com&sz=64',
+        url:  'https://www.canva.com',
+        desc: 'Design anything',
+        color: '#00C4CC',
+        newTab: false,
+    },
+    {
+        name: 'Khan Academy',
+        icon: 'https://www.google.com/s2/favicons?domain=khanacademy.org&sz=64',
+        url:  'https://www.khanacademy.org',
+        desc: 'Learn anything',
+        color: '#14BF96',
+        newTab: false,
+    },
+    // ── ADD YOUR OWN APPS BELOW ─────────────────────────────
+    // {
+    //     name: 'My App',
+    //     icon: 'https://www.google.com/s2/favicons?domain=myapp.com&sz=64',
+    //     url:  'https://myapp.com',
+    //     desc: 'Short description',
+    //     color: '#hexcolor',
+    //     newTab: false,   // set true if the site blocks iframes
+    // },
+];
+
+let currentAppUrl = '';
+
+function renderApps() {
+    const grid = document.getElementById('apps-grid');
+    if (!grid || grid.children.length) return;
+    APPS.forEach(app => {
+        const card = document.createElement('div');
+        card.className = 'app-card';
+        card.style.setProperty('--app-color', app.color || 'var(--accent)');
+        card.innerHTML = `
+            <div class="app-card-icon"><img src="${app.icon}" alt="${app.name}" onerror="this.style.display='none'"></div>
+            <div class="app-card-name">${app.name}</div>
+            <div class="app-card-desc">${app.desc}</div>
+        `;
+        card.onclick = () => openApp(app);
+        grid.appendChild(card);
+    });
+}
+
+function openApp(app) {
+    if (app.newTab) {
+        window.open(app.url, '_blank');
+        return;
+    }
+    currentAppUrl = app.url;
+    const overlay = document.getElementById('app-overlay');
+    const frame = document.getElementById('app-overlay-frame');
+    const title = document.getElementById('app-overlay-title');
+    title.textContent = app.name;
+    frame.src = app.url;
+    overlay.style.display = 'flex';
+}
+
+function closeAppOverlay() {
+    const overlay = document.getElementById('app-overlay');
+    const frame = document.getElementById('app-overlay-frame');
+    overlay.style.display = 'none';
+    frame.src = '';
+    currentAppUrl = '';
+}
+
+function openAppNewTab() {
+    if (currentAppUrl) window.open(currentAppUrl, '_blank');
+}
+
+// ══════════════════════════════════════════════════════════
+// PROXIES — open in about:blank
+// ══════════════════════════════════════════════════════════
+const PROXIES = [
+    { name: "Ultraviolet", desc: "The most popular web proxy framework. Fast, reliable, broadly compatible.", tags: ["Fast","Popular"], url: "https://github.com/titaniumnetwork-dev/Ultraviolet" },
+    { name: "Rammerhead", desc: "Powerful proxy with session storage and cookie support for smooth browsing.", tags: ["Sessions","Cookies"], url: "https://github.com/binary-person/rammerhead" },
+    { name: "Corrosion", desc: "Simple and effective service worker based proxy. Quick setup.", tags: ["Lightweight","Easy"], url: "https://github.com/titaniumnetwork-dev/corrosion" },
+    { name: "Holy Unblocker", desc: "Feature-rich proxy with a polished UI and active community.", tags: ["UI","Community"], url: "https://holyubofficial.net/" },
+    { name: "Interstellar", desc: "Sleek, modern unblocker with multiple backend proxy options.", tags: ["Modern","Multi-backend"], url: "https://interstellar.lol/" },
+    { name: "Nebula Proxy", desc: "Clean, minimal proxy — fast loads with minimal overhead.", tags: ["Minimal","Fast"], url: "https://nebulaproxy.io/" },
+];
+
+function openProxyInBlank(url) {
+    const w = window.open('about:blank', '_blank');
+    if (!w) { window.open(url, '_blank'); return; }
+    w.document.write(`<!DOCTYPE html><html><head><title>Loading...</title>
+    <style>*{margin:0;padding:0;box-sizing:border-box;}
+    html,body{height:100%;overflow:hidden;background:#000;}
+    iframe{width:100%;height:100%;border:none;display:block;}</style></head>
+    <body><iframe src="${url}" allowfullscreen allow="autoplay; fullscreen"></iframe></body></html>`);
+    w.document.close();
+}
+
+function renderProxies() {
+    const grid = document.getElementById('proxy-grid');
+    if (!grid || grid.children.length) return;
+    PROXIES.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'proxy-card';
+        card.innerHTML = `
+            <div class="proxy-name">${p.name}</div>
+            <div class="proxy-desc">${p.desc}</div>
+            <div class="proxy-tags">${p.tags.map(t=>`<span class="proxy-tag">${t}</span>`).join('')}</div>
+            <button class="proxy-link" onclick="openProxyInBlank('${p.url}')">Open →</button>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+// ══════════════════════════════════════════════════════════
+// AI — FULLSCREEN
+// ══════════════════════════════════════════════════════════
+function launchAI() {
+    const name = document.getElementById('ai-username').value.trim() || 'Agent';
+    const fw = document.getElementById('ai-frame-wrap');
+    fw.classList.add('open');
+    const base = document.getElementById('ai-frame').src.split('?')[0];
+    document.getElementById('ai-frame').src = `${base}?user=${encodeURIComponent(name)}`;
+}
+
+function closeAI() {
+    const fw = document.getElementById('ai-frame-wrap');
+    fw.classList.remove('open');
+}
+
+// ══════════════════════════════════════════════════════════
+// DISGUISE PAGE
+// ══════════════════════════════════════════════════════════
+function initDisguiseCanvas() {
+    const canvas = document.getElementById('disguise-canvas');
+    if (!canvas || canvas._init) return;
+    canvas._init = true;
+    const ctx = canvas.getContext('2d');
+    let W, H, nodes;
+    function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+    resize();
+    nodes = Array.from({length:40},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.35,vy:(Math.random()-0.5)*0.35}));
+    window.addEventListener('resize', resize);
+    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#f4c401';
+    function draw() {
+        ctx.clearRect(0,0,W,H);
+        nodes.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;});
+        for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<120){ctx.strokeStyle=accent;ctx.globalAlpha=(1-d/120)*0.15;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.stroke();ctx.globalAlpha=1;}}
+        nodes.forEach(n=>{ctx.fillStyle=accent+'88';ctx.beginPath();ctx.arc(n.x,n.y,2,0,Math.PI*2);ctx.fill();});
+        requestAnimationFrame(draw);
+    }
+    draw();
+}
+
+// DISGUISE PRESETS
+// Icons use Google's favicon service: fetches the real icon directly from each website.
+// To add more presets, just add to the presets array in initDisguisePage below.
+// Format: { icon: 'https://www.google.com/s2/favicons?domain=SITE.com&sz=64', name: 'Tab Title', url: 'site.com' }
+
+function initDisguisePage() {
+    const grid = document.getElementById('preset-grid');
+    if (!grid || grid.children.length) return;
+    const presets = [
+        { icon: 'https://www.google.com/s2/favicons?domain=drive.google.com&sz=64',      name: 'My Drive - Google Drive',   url: 'drive.google.com' },
+        { icon: 'https://www.google.com/s2/favicons?domain=google.com&sz=64',             name: 'Google',                    url: 'google.com' },
+        { icon: 'https://www.google.com/s2/favicons?domain=khanacademy.org&sz=64',        name: 'Khan Academy',              url: 'khanacademy.org' },
+        { icon: 'https://www.google.com/s2/favicons?domain=docs.google.com&sz=64',        name: 'Google Docs',               url: 'docs.google.com' },
+        { icon: 'https://www.google.com/s2/favicons?domain=slides.google.com&sz=64',      name: 'Google Slides',             url: 'slides.google.com' },
+        { icon: 'https://www.google.com/s2/favicons?domain=canvas.instructure.com&sz=64', name: 'Canvas LMS',                url: 'canvas.instructure.com' },
+        { icon: 'https://www.google.com/s2/favicons?domain=classroom.google.com&sz=64',   name: 'Google Classroom',          url: 'classroom.google.com' },
+        { icon: 'https://www.google.com/s2/favicons?domain=youtube.com&sz=64',            name: 'YouTube',                   url: 'youtube.com' },
+        { icon: 'https://www.google.com/s2/favicons?domain=schoology.com&sz=64',          name: 'Schoology',                 url: 'schoology.com' },
+        { icon: 'https://www.google.com/s2/favicons?domain=duolingo.com&sz=64',           name: 'Duolingo',                  url: 'duolingo.com' },
+    ];
+    presets.forEach(p => {
+        const btn = document.createElement('button');
+        btn.className = 'preset-btn';
+        btn.dataset.icon = p.icon;
+        btn.dataset.name = p.name;
+        btn.innerHTML = `<img src="${p.icon}" style="width:28px;height:28px;object-fit:contain;" alt="${p.name}"><span>${p.name.split(' - ')[0]}</span>`;
+        btn.onclick = () => {
+            if (typeof applyDisguise === 'function') applyDisguise(p.icon, p.name);
+            updateDisguisePreview(p.icon, p.name, p.url);
+            document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('custom-title').value = p.name;
+        };
+        grid.appendChild(btn);
+    });
+
+    if (typeof getDisguise === 'function') {
+        const saved = getDisguise();
+        if (saved) updateDisguisePreview(saved.icon, saved.name);
+    }
+
+    document.getElementById('custom-title')?.addEventListener('input', e => {
+        const saved = typeof getDisguise === 'function' ? getDisguise() : null;
+        updateDisguisePreview(saved?.icon || 'favicon.png', e.target.value || 'My Game Vault');
+    });
+
+    document.getElementById('apply-btn')?.addEventListener('click', () => {
+        const name = document.getElementById('custom-title').value.trim() || 'My Game Vault';
+        const saved = typeof getDisguise === 'function' ? getDisguise() : null;
+        const icon = saved?.icon || 'favicon.png';
+        if (typeof applyDisguise === 'function') applyDisguise(icon, name);
+        updateDisguisePreview(icon, name);
+    });
+
+    document.getElementById('reset-btn')?.addEventListener('click', () => {
+        if (typeof clearDisguise === 'function') clearDisguise();
+        document.getElementById('custom-title').value = '';
+        updateDisguisePreview('favicon.png', 'The Arcade Edition');
+        document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
+    });
+}
+
+function updateDisguisePreview(icon, name, url) {
+    const fav = document.getElementById('preview-favicon');
+    const title = document.getElementById('preview-title');
+    const urlBar = document.getElementById('preview-url');
+    if (fav) fav.src = icon || 'favicon.png';
+    if (title) title.textContent = (name||'').slice(0,28) + ((name||'').length>28?'…':'');
+    if (urlBar && url) urlBar.textContent = url;
+    else if (urlBar && !url) urlBar.textContent = 'yourname.github.io/vault';
+}
+
+// ══════════════════════════════════════════════════════════
+// SETTINGS UI
+// ══════════════════════════════════════════════════════════
+function initSettingsUI() {
+    const s = getSettings();
+    document.querySelectorAll('.theme-chip').forEach(c => c.classList.toggle('active', c.dataset.theme === s.theme));
+    document.querySelectorAll('.accent-swatch').forEach(sw => sw.classList.toggle('active', sw.dataset.color === s.accentColor));
+    const fss = document.getElementById('font-size-select');
+    if (fss) fss.value = s.fontSize;
+    const at = document.getElementById('anim-toggle');
+    if (at) at.classList.toggle('on', s.animationsEnabled);
+}
+
+document.querySelectorAll('.theme-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+        document.querySelectorAll('.theme-chip').forEach(c=>c.classList.remove('active'));
+        chip.classList.add('active');
+    });
+});
+
+document.querySelectorAll('.accent-swatch').forEach(sw => {
+    sw.addEventListener('click', () => {
+        document.querySelectorAll('.accent-swatch').forEach(s=>s.classList.remove('active'));
+        sw.classList.add('active');
+    });
+});
+
+function saveSettingsUI() {
+    const activeTheme = document.querySelector('.theme-chip.active')?.dataset.theme || 'dark';
+    const activeAccent = document.querySelector('.accent-swatch.active')?.dataset.color || '#f4c401';
+    const fontSize = document.getElementById('font-size-select')?.value || 'normal';
+    const animOn = document.getElementById('anim-toggle')?.classList.contains('on') ?? true;
+    const s = { theme: activeTheme, accentColor: activeAccent, fontSize, animationsEnabled: animOn };
+    saveSettings(s);
+    applyTheme(s);
+    const msg = document.getElementById('settings-saved-msg');
+    if (msg) { msg.textContent='✓ Settings saved!'; msg.style.display='block'; setTimeout(()=>msg.style.display='none', 2500); }
+}
+
+function resetSettingsUI() {
+    saveSettings(DEFAULTS);
+    applyTheme(DEFAULTS);
+    initSettingsUI();
+}
+
+function clearHistory() {
+    try { localStorage.removeItem('mgv_history'); } catch {}
+    const msg = document.getElementById('settings-saved-msg');
+    if (msg) { msg.textContent='✓ History cleared!'; msg.style.display='block'; setTimeout(()=>{msg.style.display='none';msg.textContent='✓ Settings saved!';},2000); }
+}
+
+// ══════════════════════════════════════════════════════════
+// GAME OVERLAY — opens games inside the hub
+// ══════════════════════════════════════════════════════════
+let gameExpanded = false;
+
+function openGameOverlay(game) {
+    const overlay = document.getElementById('game-overlay');
+    const frame = document.getElementById('game-overlay-frame');
+    const titleEl = document.getElementById('game-overlay-title');
+    if (!overlay || !frame) return;
+    titleEl.textContent = game.title;
+    frame.src = 'gamefiles/' + game.file;
+    overlay.style.display = 'flex';
+    gameExpanded = false;
+    const btn = document.getElementById('game-expand-btn');
+    if (btn) { btn.textContent = '⛶ Expand'; btn.style.background = ''; btn.style.borderColor = 'rgba(255,255,255,0.12)'; btn.style.color = '#7a7a82'; }
+    recordPlay(game);
+}
+
+function closeGameOverlay() {
+    const overlay = document.getElementById('game-overlay');
+    const frame = document.getElementById('game-overlay-frame');
+    if (overlay) overlay.style.display = 'none';
+    if (frame) frame.src = '';
+    gameExpanded = false;
+}
+
+function toggleGameExpand() {
+    gameExpanded = !gameExpanded;
+    const overlay = document.getElementById('game-overlay');
+    const btn = document.getElementById('game-expand-btn');
+    if (gameExpanded) {
+        overlay.style.top = '0';
+        btn.textContent = '⊡ Shrink';
+        btn.style.background = 'rgba(244,196,1,0.12)';
+        btn.style.borderColor = 'var(--accent)';
+        btn.style.color = 'var(--accent)';
+    } else {
+        overlay.style.top = '60px';
+        btn.textContent = '⛶ Expand';
+        btn.style.background = '';
+        btn.style.borderColor = 'rgba(255,255,255,0.12)';
+        btn.style.color = '#7a7a82';
+    }
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeAnimePlayer(); closeMoviePlayer(); closeAI(); closeGameOverlay(); closeAppOverlay(); }
+    if (e.key.toLowerCase() === 'f' && document.getElementById('movie-overlay')?.classList.contains('open')) movieToggleFullscreen();
+});
+</script>
+</body>
+</html>
